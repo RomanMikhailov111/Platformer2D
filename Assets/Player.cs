@@ -31,7 +31,8 @@ public class Player : MonoBehaviour
         _rigidbody2d.velocity = new Vector2(_direction.x * _speed, _rigidbody2d.velocity.y);
 
         bool isJumping = _direction.y > 0;
-        if (isJumping && IsGrounded())
+        bool isGrounded = IsGrounded() || IsGroundedLeft() || IsGroundedRight();
+        if (isJumping && isGrounded)
         {
             _rigidbody2d.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
 
@@ -43,9 +44,21 @@ public class Player : MonoBehaviour
         var hit = Physics2D.Raycast(transform.position, Vector2.down, 1, _groundLayer);
         return hit.collider != null;
     }
+    private bool IsGroundedLeft()
+    {
+        var hit = Physics2D.Raycast(transform.position + new Vector3(-1,0), Vector2.down, 1, _groundLayer);
+        return hit.collider != null;
+    }
+    private bool IsGroundedRight()
+    {
+        var hit = Physics2D.Raycast(transform.position + new Vector3(1,0), Vector2.down, 1, _groundLayer);
+        return hit.collider != null;
+    }
 
     private void OnDrawGizmos()
     {
         Debug.DrawRay(transform.position, Vector2.down, IsGrounded() ? Color.green : Color.red);
+        Debug.DrawRay(transform.position + new Vector3(-1,0), Vector2.down, IsGroundedLeft() ? Color.green : Color.red);
+        Debug.DrawRay(transform.position + new Vector3(+1,0), Vector2.down, IsGroundedRight() ? Color.green : Color.red);
     }
 }
