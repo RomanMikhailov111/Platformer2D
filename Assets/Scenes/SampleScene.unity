@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 154979551}
   - component: {fileID: 154979550}
   - component: {fileID: 154979549}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1486,6 +1486,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
+  _jumpSpeed: 2
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _rigidbody2d: {fileID: 405804708}
 --- !u!114 &405804711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1780,7 +1785,7 @@ GameObject:
   - component: {fileID: 1649021057}
   - component: {fileID: 1649021059}
   - component: {fileID: 1649021058}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3457,7 +3462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1817390022}
   - component: {fileID: 1817390021}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
