@@ -2806,11 +2806,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _jumpSpeed: 2
+  _jumpSpeed: 3
+  _rigidbody2d: {fileID: 405804708}
+  _offsetVectorCast: {x: 0, y: -0.36, z: 0}
+  _radiusCast: 0.7
+  _distanceCast: 0
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  _rigidbody2d: {fileID: 405804708}
 --- !u!114 &405804711
 MonoBehaviour:
   m_ObjectHideFlags: 0

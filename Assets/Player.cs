@@ -7,17 +7,25 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private const float OFFSET = 0.5f;
+
     [SerializeField]
     private float _speed;
     [SerializeField]
     private float _jumpSpeed;
-    [SerializeField] 
-    private LayerMask _groundLayer;
     [SerializeField]
     private Rigidbody2D _rigidbody2d;
-    
+
+    [SerializeField]
+    private Vector3 _offsetVectorCast;
+    [SerializeField]
+    private float _radiusCast;
+    [SerializeField]
+    private float _distanceCast;
+    [SerializeField]
+    private LayerMask _groundLayer;
 
     private Vector2 _direction;
+
     public void SetDirection(Vector2 dir)
     {
         _direction = dir;
@@ -33,7 +41,7 @@ public class Player : MonoBehaviour
         _rigidbody2d.velocity = new Vector2(_direction.x * _speed, _rigidbody2d.velocity.y);
 
         bool isJumping = _direction.y > 0;
-        bool isGrounded = IsGrounded() || IsGroundedLeft() || IsGroundedRight();
+        bool isGrounded = IsGrounded();
         if (isJumping && isGrounded)
         {
             _rigidbody2d.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
@@ -43,24 +51,14 @@ public class Player : MonoBehaviour
 
     private bool IsGrounded()
     {
-        var hit = Physics2D.Raycast(transform.position, Vector2.down, 1, _groundLayer);
-        return hit.collider != null;
-    }
-    private bool IsGroundedLeft()
-    {
-        var hit = Physics2D.Raycast(transform.position + new Vector3(-OFFSET,0), Vector2.down, 1, _groundLayer);
-        return hit.collider != null;
-    }
-    private bool IsGroundedRight()
-    {
-        var hit = Physics2D.Raycast(transform.position + new Vector3(OFFSET,0), Vector2.down, 1, _groundLayer);
+        var hit = Physics2D.CircleCast(transform.position + _offsetVectorCast, _radiusCast, Vector2.down, _distanceCast, _groundLayer);
         return hit.collider != null;
     }
 
+
     private void OnDrawGizmos()
     {
-        Debug.DrawRay(transform.position, Vector2.down, IsGrounded() ? Color.green : Color.red);
-        Debug.DrawRay(transform.position + new Vector3(-OFFSET,0), Vector2.down, IsGroundedLeft() ? Color.green : Color.red);
-       Debug.DrawRay(transform.position + new Vector3(OFFSET,0), Vector2.down, IsGroundedRight() ? Color.green : Color.red);
+        Gizmos.color = IsGrounded() ? Color.green : Color.red;
+        Gizmos.DrawSphere(transform.position + _offsetVectorCast, _radiusCast);
     }
 }
