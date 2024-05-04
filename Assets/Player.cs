@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private const float OFFSET = 0.5f;
     [SerializeField]
     private float _speed;
     [SerializeField]
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour
     private LayerMask _groundLayer;
     [SerializeField]
     private Rigidbody2D _rigidbody2d;
+    
 
     private Vector2 _direction;
     public void SetDirection(Vector2 dir)
@@ -46,19 +48,19 @@ public class Player : MonoBehaviour
     }
     private bool IsGroundedLeft()
     {
-        var hit = Physics2D.Raycast(transform.position + new Vector3(-1,0), Vector2.down, 1, _groundLayer);
+        var hit = Physics2D.Raycast(transform.position + new Vector3(-OFFSET,0), Vector2.down, 1, _groundLayer);
         return hit.collider != null;
     }
     private bool IsGroundedRight()
     {
-        var hit = Physics2D.Raycast(transform.position + new Vector3(1,0), Vector2.down, 1, _groundLayer);
+        var hit = Physics2D.Raycast(transform.position + new Vector3(OFFSET,0), Vector2.down, 1, _groundLayer);
         return hit.collider != null;
     }
 
     private void OnDrawGizmos()
     {
         Debug.DrawRay(transform.position, Vector2.down, IsGrounded() ? Color.green : Color.red);
-        Debug.DrawRay(transform.position + new Vector3(-1,0), Vector2.down, IsGroundedLeft() ? Color.green : Color.red);
-        Debug.DrawRay(transform.position + new Vector3(+1,0), Vector2.down, IsGroundedRight() ? Color.green : Color.red);
+        Debug.DrawRay(transform.position + new Vector3(-OFFSET,0), Vector2.down, IsGroundedLeft() ? Color.green : Color.red);
+       Debug.DrawRay(transform.position + new Vector3(OFFSET,0), Vector2.down, IsGroundedRight() ? Color.green : Color.red);
     }
 }
