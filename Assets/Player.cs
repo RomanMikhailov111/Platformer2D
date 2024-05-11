@@ -17,7 +17,10 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rigidbody2d;
 
     [SerializeField]
-    private Layer_Collider_Check _groundCheck;
+    private Animator _animator;
+
+    [SerializeField]
+    private LayerColliderCheck _groundCheck;
 
     private Vector2 _direction;
 
@@ -28,6 +31,14 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        _animator.SetBool("is-grounded", _groundCheck.IsTouchingLayer);
+        _animator.SetBool("is-running", _direction.x!=0);
+        _animator.SetFloat("vertical-velocity", _rigidbody2d.velocity.y);
+    }
+
+    void FixedUpdate()
+    {
+        _rigidbody2d.velocity = new Vector2(_direction.x * _speed, _rigidbody2d.velocity.y);
         bool isJumping = _direction.y > 0;
         bool isGrounded = _groundCheck.IsTouchingLayer;
         if (isJumping && isGrounded)
@@ -36,13 +47,5 @@ public class Player : MonoBehaviour
                 _rigidbody2d.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
             }
         }
-    }
-
-    void FixedUpdate()
-    {
-        _rigidbody2d.velocity = new Vector2(_direction.x * _speed, _rigidbody2d.velocity.y);
-
-        
-        
     }
 }

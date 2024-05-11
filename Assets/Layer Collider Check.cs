@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets
 {
-    public class Layer_Collider_Check : LayerCheck
+    public class LayerColliderCheck : LayerCheck
     {
         [SerializeField]
         private Collider2D _collider;
