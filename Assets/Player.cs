@@ -47,6 +47,20 @@ public class Player : MonoBehaviour
         _animator.SetBool("is-grounded", _groundCheck.IsTouchingLayer);
         _animator.SetBool("is-running", _direction.x != 0);
         _animator.SetFloat("vertical-velocity", _rigidbody2d.velocity.y);
+
+        UpdateSpriteDirection();
+    }
+
+    private void UpdateSpriteDirection()
+    {
+        if (_direction.x > 0)
+        {
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+        }
+        else if (_direction.x < 0)
+        {
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+        }
     }
 
     private float CalculateYVelocity()
