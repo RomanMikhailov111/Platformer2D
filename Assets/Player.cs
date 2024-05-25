@@ -22,12 +22,20 @@ public class Player : MonoBehaviour
     [SerializeField]
     private LayerColliderCheck _groundCheck;
 
+    [SerializeField]
+    private int _coins;
+
     private Vector2 _direction;
 
     private bool _allowDoubleJump;
     public void SetDirection(Vector2 dir)
     {
         _direction = dir;
+    }
+    public void AddCoin(int value)
+    {
+        _coins += value;
+        Debug.Log("Collect coin : " + value + ". All coins : " + _coins);
     }
 
     void Update()
