@@ -7,17 +7,14 @@ public class Coin : MonoBehaviour
     [SerializeField]
     private int CoinValue;
 
-    private Player player;
-
-    // Start is called before the first frame update
-    void Start()
+    
+    public void Collect(GameObject Hero)
     {
-        player = FindFirstObjectByType<Player>();
-        //Debug.Log(player.name, player);
-    }
-    public void Collect()
-    {
+        bool isHero = Hero.TryGetComponent(out Player player);
+        if (!isHero)
+        {
+            return;
+        }
         player.AddCoin(CoinValue);
-        Destroy(gameObject);
     }
 }

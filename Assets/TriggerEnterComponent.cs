@@ -10,13 +10,13 @@ namespace Assets
         private string _tag;
 
         [SerializeField]
-        private UnityEvent _unityEvent;
+        private EnterEvent _unityEvent;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.CompareTag(_tag))
             {
-                _unityEvent?.Invoke();
+                _unityEvent?.Invoke(collision.gameObject);
             }
         }
     }
