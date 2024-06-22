@@ -32,6 +32,12 @@ public class Player : MonoBehaviour
     {
         _direction = dir;
     }
+    public void AddCheatCoin()
+    {
+        int value = 10;
+         _coins += value;
+        Debug.Log("Collect coin : " + value + ". All coins : " + _coins);
+    }
     public void AddCoin(int value)
     {
         _coins += value;

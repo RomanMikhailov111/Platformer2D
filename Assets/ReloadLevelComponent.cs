@@ -10,7 +10,5 @@ namespace Assets
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);
         }
-
-       
     }
 }
