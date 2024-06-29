@@ -28,6 +28,11 @@ public class Player : MonoBehaviour
     private Vector2 _direction;
 
     private bool _allowDoubleJump;
+    [SerializeField]
+    private float radius;
+    [SerializeField]
+    private LayerMask layerMask;
+
     public void SetDirection(Vector2 dir)
     {
         _direction = dir;
@@ -120,9 +125,17 @@ public class Player : MonoBehaviour
 
         return yvelocity;
     }
+    private readonly Collider2D[] InteractionResult = new Collider2D[10];
 
     public void Interactible()
     {
+        int SizeLayer = Physics2D.OverlapCircleNonAlloc(transform.position, radius, InteractionResult, layerMask);
+        
+        for (int i = 0; i < SizeLayer; i++)
+        {
+            InteractionResult[i].gameObject.GetComponent<Interactible>().Interact();
+        }
+
         Debug.Log("Interactible");
     }
 }

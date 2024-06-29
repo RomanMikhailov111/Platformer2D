@@ -3079,6 +3079,10 @@ MonoBehaviour:
   _animator: {fileID: 405804713}
   _groundCheck: {fileID: 322854296}
   _coins: 0
+  radius: 3
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &405804711
 MonoBehaviour:
   m_ObjectHideFlags: 0
