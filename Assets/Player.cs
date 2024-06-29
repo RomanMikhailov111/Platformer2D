@@ -120,4 +120,9 @@ public class Player : MonoBehaviour
 
         return yvelocity;
     }
+
+    public void Interactible()
+    {
+        Debug.Log("Interactible");
+    }
 }

@@ -2981,7 +2981,7 @@ Transform:
   m_GameObject: {fileID: 405804705}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -40.63, y: -4.17, z: 0}
+  m_LocalPosition: {x: -2.0618603, y: -5.338911, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3181,6 +3181,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: fae7eb9e-3043-4d3d-abba-1afc002763c8
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 405804711}
+        m_TargetAssemblyTypeName: PlayerInputReader, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4d3d4e82-2530-44f9-8e57-dd8437034833
+    m_ActionName: 'Player/Interactible[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -3407,7 +3423,7 @@ GameObject:
   - component: {fileID: 552747152}
   - component: {fileID: 552747156}
   - component: {fileID: 552747155}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Helm_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
